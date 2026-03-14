@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*  background aur text color par transition ,  */
+
+@layer base {
+  body {
+    @apply transition-colors duration-500 ease-in-out;
+  }
+
+  /* Custom Scrollbar for modern look */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-indigo-500/50 rounded-full hover:bg-indigo-600;
+  }
+}
+
+/* Optional: Smooth loading of the website */
+#root {
+  @apply transition-opacity duration-700 ease-in-out;
+}
+
+/* index.css mein add  */
+@layer base {
+  select option {
+    @apply bg-white text-black dark:bg-gray-900 dark:text-white;
+  }
+}
