@@ -15,7 +15,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "lucide-react": "^0.563.0",
-    "QRCodeCanvas.react": "^4.2.0",
+    "qrcode.react": "^4.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
