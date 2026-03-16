@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import {
   createBrowserRouter,
-  // createHashRouter,
   RouterProvider,
   Navigate,
 } from "react-router-dom";
@@ -56,53 +55,48 @@ const PageLoader = () => (
   </div>
 );
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/",
-      element: (
-        <Suspense fallback={<PageLoader />}>
-          <AuthGuard>
-            <Layout />
-          </AuthGuard>
-        </Suspense>
-      ),
-      children: [
-        { path: "", element: <Home /> },
-        { path: "about", element: <About /> },
-        { path: "product", element: <Product /> },
-        { path: "contact", element: <Contact /> },
-        { path: "cart", element: <Cart /> },
-        { path: "wishlist", element: <Wishlist /> },
-        { path: "product/:id", element: <ProductDetail /> },
-        { path: "orders", element: <Orders /> },
-      ],
-    },
-    // Admin Routes (Adding your requested block)
-    {
-      path: "/admin",
-      element: (
-        <Suspense fallback={<PageLoader />}>
-          <AdminGuard>
-            <Layout />
-          </AdminGuard>
-        </Suspense>
-      ),
-      children: [
-        { path: "dashboard", element: <AdminDashboard /> },
-        { path: "manage-orders", element: <ManageOrders /> },
-        { path: "manage-products", element: <ManageProducts /> },
-      ],
-    },
-  ],
-  // {
-  //   basename: "/react-ecommerce-store",
-  // },
-);
+const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/",
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <AuthGuard>
+          <Layout />
+        </AuthGuard>
+      </Suspense>
+    ),
+    children: [
+      { path: "", element: <Home /> },
+      { path: "about", element: <About /> },
+      { path: "product", element: <Product /> },
+      { path: "contact", element: <Contact /> },
+      { path: "cart", element: <Cart /> },
+      { path: "wishlist", element: <Wishlist /> },
+      { path: "product/:id", element: <ProductDetail /> },
+      { path: "orders", element: <Orders /> },
+    ],
+  },
+  // Admin Routes (Adding your requested block)
+  {
+    path: "/admin",
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <AdminGuard>
+          <Layout />
+        </AdminGuard>
+      </Suspense>
+    ),
+    children: [
+      { path: "dashboard", element: <AdminDashboard /> },
+      { path: "manage-orders", element: <ManageOrders /> },
+      { path: "manage-products", element: <ManageProducts /> },
+    ],
+  },
+]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
