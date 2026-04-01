@@ -55,32 +55,130 @@ const PageLoader = () => (
   </div>
 );
 
+// const router = createBrowserRouter([
+//   {
+//     path: "/login",
+//     element: <Login />,
+//   },
+//   {
+//     path: "/",
+//     element: (
+//       <Suspense fallback={<PageLoader />}>
+//         <AuthGuard>
+//           <Layout />
+//         </AuthGuard>
+//       </Suspense>
+//     ),
+//     children: [
+//       { path: "", element: <Home /> },
+//       { path: "about", element: <About /> },
+//       { path: "product", element: <Product /> },
+//       { path: "contact", element: <Contact /> },
+//       { path: "cart", element: <Cart /> },
+//       { path: "wishlist", element: <Wishlist /> },
+//       { path: "product/:id", element: <ProductDetail /> },
+//       { path: "orders", element: <Orders /> },
+//     ],
+//   },
+//   // Admin Routes (Adding your requested block)
+//   {
+//     path: "/admin",
+//     element: (
+//       <Suspense fallback={<PageLoader />}>
+//         <AdminGuard>
+//           <Layout />
+//         </AdminGuard>
+//       </Suspense>
+//     ),
+//     children: [
+//       { path: "dashboard", element: <AdminDashboard /> },
+//       { path: "manage-orders", element: <ManageOrders /> },
+//       { path: "manage-products", element: <ManageProducts /> },
+//     ],
+//   },
+// ]);
+
 const router = createBrowserRouter([
-  {
-    path: "/login",
-    element: <Login />,
-  },
   {
     path: "/",
     element: (
       <Suspense fallback={<PageLoader />}>
-        <AuthGuard>
-          <Layout />
-        </AuthGuard>
+        <Layout />
       </Suspense>
     ),
     children: [
-      { path: "", element: <Home /> },
-      { path: "about", element: <About /> },
-      { path: "product", element: <Product /> },
-      { path: "contact", element: <Contact /> },
-      { path: "cart", element: <Cart /> },
-      { path: "wishlist", element: <Wishlist /> },
-      { path: "product/:id", element: <ProductDetail /> },
-      { path: "orders", element: <Orders /> },
+      // ✅ LOGIN inside layout
+      { path: "login", element: <Login /> },
+
+      // ✅ Protected Routes
+      {
+        path: "",
+        element: (
+          <AuthGuard>
+            <Home />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "about",
+        element: (
+          <AuthGuard>
+            <About />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "product",
+        element: (
+          <AuthGuard>
+            <Product />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "contact",
+        element: (
+          <AuthGuard>
+            <Contact />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "cart",
+        element: (
+          <AuthGuard>
+            <Cart />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "wishlist",
+        element: (
+          <AuthGuard>
+            <Wishlist />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "product/:id",
+        element: (
+          <AuthGuard>
+            <ProductDetail />
+          </AuthGuard>
+        ),
+      },
+      {
+        path: "orders",
+        element: (
+          <AuthGuard>
+            <Orders />
+          </AuthGuard>
+        ),
+      },
     ],
   },
-  // Admin Routes (Adding your requested block)
+
+  // ✅ Admin Routes (same as before)
   {
     path: "/admin",
     element: (
